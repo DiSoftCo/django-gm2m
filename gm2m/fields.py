@@ -1,10 +1,9 @@
 import warnings
 
-from django.utils import six
 from django.db.models.fields import Field
 from django.db import connection
-from django.utils.encoding import force_text
-from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import force_str
+from django.utils.translation import gettext_lazy as _
 from django.core import checks
 from django.db.backends import utils as db_backends_utils
 
@@ -85,7 +84,7 @@ class GM2MField(Field):
             if getattr(rel, '_added', False):
                 continue
 
-            if isinstance(rel.model, six.string_types):
+            if isinstance(rel.model, str):
                 args.append(rel.model)
             else:
                 # see if the related model is a swappable model
@@ -114,7 +113,7 @@ class GM2MField(Field):
 
         through = self.remote_field.through
         if through:
-            if isinstance(through, six.string_types):
+            if isinstance(through, str):
                 kwargs['through'] = through
             elif not through._meta.auto_created:
                 kwargs['through'] = '%s.%s' % (through._meta.app_label,
@@ -144,7 +143,7 @@ class GM2MField(Field):
 
             if value != default:
                 if k == 'related_name':
-                    value = force_text(value)
+                    value = force_str(value)
                 kwargs[k] = value
 
         return name, path, args, kwargs

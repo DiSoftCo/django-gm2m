@@ -7,6 +7,25 @@ key:
 | \- deletion
 
 
+v1.1.1 (05-10-2020)
+-------------------
+
+| \* Make GM2MModelMetaclass hashable for migrations
+
+
+v1.1 (05-10-2020)
+-----------------
+
+| \+ Add support for Django 3.1
+
+
+v1.0 (31-07-2020)
+-----------------
+
+| \+ Add support for Django 3.0
+| \- Drops support for Django < 2.2
+
+
 v0.6 (22-03-2018)
 -----------------
 
